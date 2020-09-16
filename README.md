@@ -4,7 +4,7 @@ Laravel Build: v8.3.0
 
 ## Description 
 
-**The Goal:**: Creating a Photos REST API with Laravel, in which photos can be created, updated, deleted, listed and dissplayed in the browser.  Initially with JSON.
+**The Goal:**: Creating a Photos REST API with Laravel, in which photos can be created, updated, deleted, listed and displayed in the browser.  Initially with JSON.
 
 ## **Progress**: 
 
