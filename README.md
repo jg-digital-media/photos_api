@@ -12,6 +12,7 @@ Laravel Build: v8.3.0
 + Created Models for Photos and Owners
 + Have defined database relationships using Eloquent Syntax
 + Have created database seeder files based on the Models
++ Have created factory files with Artisan. They've changed in Laravel 8. How to use Faker library?
 
 
 ## Migrations
@@ -53,10 +54,12 @@ Schema::create('authors', function(Blueprint $table) {
 + Model factories are used to generate large amounts of dummy data to speed up development.
 + php artisan make:seeder PhotosTableSeeder
 + php artisan make:seeder OwnersTableSeeder
++ php artisan make:factory OwnerFactory
++ php artisan make:factory PhotoFactory
 
 ### Notes
 
-In a change to v8 of Laravel, Models now include use of hasFactory.  keeping this for now.
++ In a change to v8 of Laravel, Models now include use of hasFactory.  keeping this for now.
 
 ```php
 
@@ -74,7 +77,7 @@ class Owner extends Model
 
 ```
 
-In Laravel 8:  DatabaseSeeder.php now contains a call to generate 10 records - uncommented by default
++ In Laravel 8:  DatabaseSeeder.php now contains a call to generate 10 records - uncommented by default
 
 ```php
 <?php
@@ -98,4 +101,38 @@ class DatabaseSeeder extends Seeder
     }
 }
 
+```
+
++ Factories have undergone a big change in Laravel 8.  This is what you get when you now create Factories in Artisan
+
+```php
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Model;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class ModelFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Model::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+}
 ```
