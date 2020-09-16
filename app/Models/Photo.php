@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    use HasFactory;
+    protected $table = "photos";
+
+    protected $fillable =[
+        "url",
+        "caption",
+        "owner_id"
+    
+    ];
+
+    public function owner() {
+        return $this->belongsTo(Owner::class);
+    }
 }
