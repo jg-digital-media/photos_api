@@ -24,6 +24,9 @@ class ModelFactory extends Factory
     {
         return [
             //
+            "name" => $faker->name,
+            "copyright" => $faker->text,
+            "year" => $faker->year
         ];
     }
 }
