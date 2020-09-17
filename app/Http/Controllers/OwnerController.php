@@ -14,7 +14,7 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //all records
+        //list all records
         return response(Owner::all(), 200);
         
     }
@@ -83,7 +83,7 @@ class OwnerController extends Controller
         foreach($owner->photos as $photo) {
             $photo->delete();
         }
-        
+
         //destroy a specific record
         $owner->delete();
         return response(null, 204);

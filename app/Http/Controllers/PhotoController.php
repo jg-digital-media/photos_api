@@ -14,8 +14,11 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        //list all records
+        return response(Photo::all(), 200);
+        
     }
+
 
     /**
      * Store a newly created resource in storage.
