@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Owner;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class ModelFactory extends Factory
+class OwnerFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Owner::class;
 
     /**
      * Define the model's default state.
@@ -24,9 +25,9 @@ class ModelFactory extends Factory
     {
         return [
             //
-            "name" => $faker->name,
-            "copyright" => $faker->text,
-            "year" => $faker->year
+            "name" => $this->faker->name,
+            "copyright" => $this->faker->text,
+            "year" => $this->faker->year
         ];
     }
 }

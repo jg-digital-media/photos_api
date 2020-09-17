@@ -13,6 +13,9 @@ class OwnersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //connect factory to seeder
+        //factory( \App\Models\Owner::class, 10)->create();
+        \App\Models\Owner::factory()->count(10)->create(); 
+
     }
 }
