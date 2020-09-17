@@ -37,9 +37,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Photo $photo)
     {
-        //
+        return response($photo, 200);
     }
 
     /**
@@ -60,8 +60,10 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Photo $photo)
     {
-        //
+        //delete photo
+        $photo->delete();
+        return response(null, 204);
     }
 }
