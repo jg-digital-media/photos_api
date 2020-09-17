@@ -29,6 +29,15 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         //
+
+        $data = $request->validate([
+        "url" => "required",
+        "caption" => "required",
+        "owner_id" => "required"
+        ]);
+
+        $photo = Photo::create($data);
+        //why no return keyword?
     }
 
     /**
