@@ -8,13 +8,14 @@ Laravel Build: v8.3.0
 
 ## **Progress**: 
 
-+ Have Set up successful database migrations
-+ Created Models for Photos and Owners
-+ Have defined database relationships using Eloquent Syntax
-+ Have created database seeder files based on the Models
++ Have Set up successful database migrations.
++ Created Models for Photos and Owners.
++ Have defined database relationships using Eloquent Syntax.
++ Have created database seeder files based on the Models.
 + Have created factory files with Artisan. They've changed in Laravel 8. How to use Faker library?
-+ Have successfully seeded the Models with test data
-
++ Have successfully seeded the Models with test data.
++ Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working un /tinker that verifies the test records are there.
++ Created the API Resource Controllers for Owner and Photos.
 
 ## Migrations
 
@@ -71,7 +72,6 @@ Schema::create('authors', function(Blueprint $table) {
 
 ### Controllers and Resource Controllers
 
-+ 
 + php artisan make:controller NamedControlller
 + php artisan make:controller PhotoController -r --api
 + php artisan make:controller OwnerController -r --api
@@ -187,6 +187,80 @@ class PhotosTableSeeder extends Seeder
 
     }
 }
+
+```
+
+### Controllers
+
++ PhotoController.php
+
+```php
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Photo;
+use Illuminate\Http\Request;
+
+class PhotoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
+
 
 ```
 
