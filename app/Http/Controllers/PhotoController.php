@@ -29,7 +29,6 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         //
-
         $data = $request->validate([
         "url" => "required",
         "caption" => "required",
@@ -58,9 +57,17 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Photo $photo)
     {
         //
+        $data = $request->validate([
+            "url" => "required",
+            "caption" => "required",
+            "owner_id" => "required"
+        ]);
+
+        return response( $photo->update($data), 200 );
+    
     }
 
     /**
