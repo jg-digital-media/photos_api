@@ -79,8 +79,14 @@ class OwnerController extends Controller
      */
     public function destroy(Owner $owner)
     {
+    
+        foreach($owner->photos as $photo) {
+            $photo->delete();
+        }
+        
         //destroy a specific record
-        $author->delete();
+        $owner->delete();
         return response(null, 204);
+    
     }
 }

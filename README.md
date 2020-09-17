@@ -114,7 +114,7 @@ class PhotoController extends Controller
     }
 ```
 
-#### Update a specific record with update()
+### Update a specific record with update()
 
 ```php
 public function update(Request $request, Owner $owner)
@@ -134,13 +134,29 @@ public function update(Request $request, Owner $owner)
     }
 ```
 
-### Delete a specific record
+### Delete a specific record with destroy() method  v1
 
 ```php
    public function destroy(Owner $owner)
     {
         //destroy a specific record
         $author->delete();
+        return response(null, 204);
+    }
+```
+
+### Delete a specific record with destroy() method  v2
+
+```php
+   public function destroy(Owner $owner)
+    {
+
+        foreach($owner->photos as $photo) {
+            $photo->delete();
+        }
+
+        //destroy a specific record
+        $owner->delete();
         return response(null, 204);
     }
 ```
