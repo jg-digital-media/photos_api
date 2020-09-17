@@ -38,6 +38,22 @@ Schema::create('authors', function(Blueprint $table) {
 
 ```
 
+## Resource Controllers
+
+```php 
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Photo;
+use Illuminate\Http\Request;
+
+class PhotoController extends Controller
+{
+  
+
+```
 
 ## Common Commands
 
@@ -194,6 +210,8 @@ class PhotosTableSeeder extends Seeder
 
 + PhotoController.php
 
++ use import for App\Models\Model  - change from Laravel 8.
+
 ```php
 
 <?php
@@ -266,4 +284,12 @@ class PhotoController extends Controller
 
 ## Links
 
+### Calling Factories in Laravel 8
+
 https://stackoverflow.com/questions/63816395/laravel-call-to-undefined-function-database-seeders-factory - Stack Overflow - Call to undefined function - seeders in Laravel 8
+
+
+### index method display all records
+public function index() {
+    return response(Author::all(), 200);
+}
