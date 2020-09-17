@@ -152,6 +152,8 @@ public function update(Request $request, Owner $owner)
     }
 ```
 
+```
+<?php 
 public function update(Request $request, Photo $photo)
     {
         //
@@ -161,10 +163,11 @@ public function update(Request $request, Photo $photo)
             "owner_id" => "required"
         ]);
 
+        //photo update method?
         return response( $photo->update($data), 200 );
     
     }
-
+```
 
 ### Delete a specific record with destroy() method  v1
 
@@ -253,6 +256,8 @@ class Owner extends Model
 }
 
 ```
+
+### DatabaseSeeder.php 
 
 + In Laravel 8:  DatabaseSeeder.php now contains a call to generate 10 records - uncommented by default
 
