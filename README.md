@@ -58,6 +58,18 @@ Schema::create('authors', function(Blueprint $table) {
 + php artisan make:factory OwnerFactory
 + php artisan make:factory PhotoFactory
 
+### Testing Records with Tinker
+
++ Photo::all()
++ Owner::all()
++ Photo::first()
++ Owner::first()
++ Photo::count()
++ Owner::count()
++ Photo::first()->owner  ====> ```Checking entity relationship``` **OK**
++ Owner::first()->photos
+
+
 ### Notes
 
 + In a change to v8 of Laravel, Models now include use of hasFactory.  keeping this for now.
