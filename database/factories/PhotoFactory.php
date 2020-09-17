@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Photo;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class ModelFactory extends Factory
+class PhotoFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Photo::class;
 
     /**
      * Define the model's default state.
@@ -24,6 +25,9 @@ class ModelFactory extends Factory
     {
         return [
             //
+            "url" => $this->faker->name,
+            "caption" => $this->faker->text,
+            "owner_id" => rand(1, \App\Models\Owner::count())
         ];
     }
 }
