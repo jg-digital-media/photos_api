@@ -16,6 +16,7 @@ Laravel Build: v8.3.0
 + Have successfully seeded the Models with test data.
 + Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working un /tinker that verifies the test records are there.
 + Created the API Resource Controllers for Owner and Photos.
++ Currently going through the CRUD methods in the resource controllers - why are we not using a return statement for the PhotosController store() method.
 
 ## Migrations
 
@@ -65,7 +66,7 @@ class PhotoController extends Controller
 
 ```
 
-### Validate new data in store() method.  v1
+### Validate new data in store() method. v1
 
 ```php
 
@@ -89,7 +90,7 @@ class PhotoController extends Controller
     return response(Owner::create($data, 201)) //201 created
 ```
 
-### Validate new data in store() method.  v2
+### Validate new data in store() method. v2
 
 ```php
 
@@ -103,6 +104,23 @@ class PhotoController extends Controller
     //shorter syntax
     return response(Owner::create($data, 201)) //201 created
 
+```
+
+### Validate new data in store() method. v3
+
+```php
+   public function store(Request $request)
+    {
+        //
+        $data = $request->validate([
+        "url" => "required",
+        "caption" => "required",
+        "owner_id" => "required"
+        ]);
+
+        $photo = Photo::create($data);
+        //why no return keyword?
+    }
 ```
 
 ### Display a specific record with show()
@@ -133,6 +151,20 @@ public function update(Request $request, Owner $owner)
 
     }
 ```
+
+public function update(Request $request, Photo $photo)
+    {
+        //
+        $data = $request->validate([
+            "url" => "required",
+            "caption" => "required",
+            "owner_id" => "required"
+        ]);
+
+        return response( $photo->update($data), 200 );
+    
+    }
+
 
 ### Delete a specific record with destroy() method  v1
 
@@ -400,3 +432,42 @@ https://stackoverflow.com/questions/63816395/laravel-call-to-undefined-function-
 public function index() {
     return response(Author::all(), 200);
 }
+
+
+### Discrepancy - Update() method in Photo and Owner Controllers
+
+```php
+ public function update(Request $request, Owner $owner)
+    {
+        //update a specific record
+        $data = $request->validate([
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+        $owner->update($data);
+
+        return response($owner->update($data), 200);
+
+
+    }
+```
+
+```php
+
+public function update(Request $request, Photo $photo)
+    {
+        //
+        $data = $request->validate([
+            "url" => "required",
+            "caption" => "required",
+            "owner_id" => "required"
+        ]);
+
+        //owner->update($data);  - not included in video
+        return response( $photo->update($data), 200 );
+    
+    }
+
+```
