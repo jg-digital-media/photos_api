@@ -105,6 +105,36 @@ class PhotoController extends Controller
 
 ```
 
+### Display a specific record with show()
+
+```php
+   public function show(Owner $owner)
+    {
+        return response($owner, 200);
+    }
+```
+
+#### Update a specific record with update()
+
+```php
+public function update(Request $request, Owner $owner)
+    {
+        //update a specific record
+        $data = $request->validate([
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+        $owner->update($data);
+
+        return response($owner->update($data), 200);
+
+
+    }
+```
+
+
 ## Common Commands
 
 + php artisan key:generate

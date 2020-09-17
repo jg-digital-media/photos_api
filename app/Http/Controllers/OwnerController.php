@@ -43,9 +43,9 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Owner $owner)
     {
-        //
+        return response($owner, 200);
     }
 
     /**
@@ -55,9 +55,20 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Owner $owner)
     {
-        //
+        //update a specific record
+        $data = $request->validate([
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+        $owner->update($data);
+
+        return response($owner->update($data), 200);
+
+
     }
 
     /**
