@@ -134,6 +134,17 @@ public function update(Request $request, Owner $owner)
     }
 ```
 
+### Delete a specific record
+
+```php
+   public function destroy(Owner $owner)
+    {
+        //destroy a specific record
+        $author->delete();
+        return response(null, 204);
+    }
+```
+
 
 ## Common Commands
 

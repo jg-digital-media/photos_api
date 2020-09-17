@@ -77,8 +77,10 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Owner $owner)
     {
-        //
+        //destroy a specific record
+        $author->delete();
+        return response(null, 204);
     }
 }
