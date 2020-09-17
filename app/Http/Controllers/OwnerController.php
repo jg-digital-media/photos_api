@@ -27,7 +27,14 @@ class OwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //create a new record   
+        $data = $request->validate([
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+        return response(Owner::create($data, 201)); //201 created
     }
 
     /**

@@ -40,6 +40,9 @@ Schema::create('authors', function(Blueprint $table) {
 
 ## Resource Controllers
 
+
+### List records with index method.
+
 ```php 
 
 <?php
@@ -51,7 +54,54 @@ use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
-  
+      //content
+    public function index()
+        {
+            //all records
+            return response(Owner::all(), 200);
+        
+        }
+}  
+
+```
+
+### Validate new data in store() method.  v1
+
+```php
+
+    $data = $request->validate([
+        'name' => 'required',
+        'copyright' => 'required',
+        'year' => 'required'
+    ]);
+
+    $owner = new Owner();
+
+    $owner->name = $data->name;
+    $owner->title = $data->title;
+    $owner->year = $data->year;
+
+    $owner->save();
+
+    return response($owner, 201);  //201 created
+
+    //shorter syntax
+    return response(Owner::create($data, 201)) //201 created
+```
+
+### Validate new data in store() method.  v2
+
+```php
+
+    //create a new record
+    $data = $request->validate([
+        'name' => 'required',
+        'copyright' => 'required',
+        'year' => 'required'
+    ]);
+
+    //shorter syntax
+    return response(Owner::create($data, 201)) //201 created
 
 ```
 
