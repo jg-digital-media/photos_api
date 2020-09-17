@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 16/09/202020
+Photos API in Laravel - **Last Update** - 17/09/202020  13:15 BST
 Laravel Build: v8.3.0
 
 ## Description 
@@ -69,8 +69,17 @@ Schema::create('authors', function(Blueprint $table) {
 + Photo::first()->owner  ====> ```Checking entity relationship``` **OK**
 + Owner::first()->photos
 
+### Controllers and Resource Controllers
 
-### Notes
++ 
++ php artisan make:controller NamedControlller
++ php artisan make:controller PhotoController -r --api
++ php artisan make:controller OwnerController -r --api
+
+
+## Notes
+
+### Models
 
 + In a change to v8 of Laravel, Models now include use of hasFactory.  keeping this for now.
 
@@ -116,6 +125,8 @@ class DatabaseSeeder extends Seeder
 
 ```
 
+### Factories
+
 + Factories have undergone a big change in Laravel 8.  This is what you get when you now create Factories in Artisan
 
 ```php
@@ -150,6 +161,8 @@ class ModelFactory extends Factory
 }
 ```
 
+### TableSeeders
+
 + NamedTableSeeder.php - 
 
 ```php
@@ -176,3 +189,7 @@ class PhotosTableSeeder extends Seeder
 }
 
 ```
+
+## Links
+
+https://stackoverflow.com/questions/63816395/laravel-call-to-undefined-function-database-seeders-factory - Stack Overflow - Call to undefined function - seeders in Laravel 8
