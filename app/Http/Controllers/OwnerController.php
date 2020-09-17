@@ -14,7 +14,9 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //
+        //all records
+        return response(Owner::all(), 200);
+        
     }
 
     /**
