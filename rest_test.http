@@ -1,5 +1,21 @@
+####### Owner Endpoints
 
 ### All Owners
-
 GET http://localhost:8000/api/owners   
 # successfully retrieves owners list
+
+### Test Single Authors
+GET http://localhost:8000/api/owners/1/
+# successfully retrieves single owner
+
+
+####### Photo Endpoints
+
+### All Photos
+GET http://localhost:8000/api/photos   
+# successfully retrieves photos list
+
+### Test Photos Authors
+GET http://localhost:8000/api/photos/1/
+# successfully retrieves single photo
+
