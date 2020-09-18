@@ -64,8 +64,10 @@ class OwnerController extends Controller
             'year' => 'required'
         ]);
 
+        //use this line to capture the existing data record
         $owner->update($data);
 
+        //return the response
         return response($owner->update($data), 200);
 
 
