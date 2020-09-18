@@ -47,8 +47,8 @@ Laravel Build: v8.3.0
 + php artisan route:list
 
 ### Create Models
-+ php artisan make:model Model -m - create model with migration
-+ php artisan make:model Model - create model 
++ **```php artisan make:model Model-m```** - create model with migration
++ **php artisan make:model Model** - create model 
 
 ### Factories and Seeders
 
