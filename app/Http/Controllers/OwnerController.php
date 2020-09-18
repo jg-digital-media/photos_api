@@ -35,7 +35,9 @@ class OwnerController extends Controller
             'year' => 'required'
         ]);
 
-        return response(Owner::create($data, 201)); //201 created
+        //return response(Owner::create($data, 201)); //201 created
+        return response( new OwnerResource( Owner::create($data)), 201); //201 created
+
     }
 
     /**

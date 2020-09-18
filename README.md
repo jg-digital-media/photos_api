@@ -248,6 +248,53 @@ public function update(Request $request, Photo $photo)
 ```php
 ```
 
+### Connecting Resources to Controllers 
+
++ Changes to Controller CRUD methods to use resources - returning either a single new resource or a collection
+
+```php
+    <?php
+    public function index() {
+        //list all records
+        return response( OwnerResource::collection( Owner::all(), 200) );
+            
+    }
+    ?>
+```
+
+```php
+    <?php
+    public function show(Owner $owner) {
+    return response( new OwnerResource($owner), 200);
+
+    }
+    ?>
+
+```
+
+```php
+
+<?php
+public function store(Request $request)
+    {
+        //create a new record   
+        $data = $request->validate([
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+        //return response(Owner::create($data, 201)); //201 created
+        return response( new OwnerResource( Owner::create($data)), 201); //201 created
+
+    }
+?>
+```
+
+```php
+
+```
+
 ## Notes
 
 ### Models
@@ -501,7 +548,7 @@ public function update(Request $request, Photo $photo)
 ```php
 ```
 
-+ Connect Resources  - in index method of controller file
++ Connect Resources - in index method of Controller file
 
 ```php
 
@@ -519,7 +566,7 @@ public function index()
         
     }
 
->
+
 ```
 
 ## Links
