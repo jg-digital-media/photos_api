@@ -19,6 +19,49 @@ Laravel Build: v8.3.0
 + Currently going through the CRUD methods in the Resource Controllers - Why are we not using a return statement for the PhotosController store() method??
 + Fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers
 
+## Common Commands
+
++ php artisan key:generate
++ php artisan serve
++ php artisan migrate
++ php artisan migrate:fresh
++ pho artisan db:seed
++ php artisan route:list
+
+### Create Models
++ php artisan make:model Model -m - create model with migration
++ php artisan make:model Model - create model 
+
+### Factories and Seeders
+
++ Model factories are used to generate large amounts of dummy data to speed up development.
++ php artisan make:seeder PhotosTableSeeder
++ php artisan make:seeder OwnersTableSeeder
++ php artisan make:factory OwnerFactory
++ php artisan make:factory PhotoFactory
+
+### Testing Records with Tinker
+
++ Photo::all()
++ Owner::all()
++ Photo::first()
++ Owner::first()
++ Photo::count()
++ Owner::count()
++ Photo::first()->owner  ====> ```Checking entity relationship``` **OK**
++ Owner::first()->photos
+
+### Controllers and Resource Controllers
+
++ php artisan make:controller NamedControlller
++ php artisan make:controller PhotoController -r --api
++ php artisan make:controller OwnerController -r --api
+
+### Resources
+
++ php artisan make:resource PhotoResource
++ php artisan make:resource OwnerResource
+
 ## Migrations
 
 ```php
@@ -196,45 +239,6 @@ public function update(Request $request, Photo $photo)
         return response(null, 204);
     }
 ```
-
-
-## Common Commands
-
-+ php artisan key:generate
-+ php artisan serve
-+ php artisan migrate
-+ php artisan migrate:fresh
-+ pho artisan db:seed
-+ php artisan route:list
-
-### Create Models
-+ php artisan make:model Model -m - create model with migration
-+ php artisan make:model Model - create model 
-
-### Factories and Seeders
-
-+ Model factories are used to generate large amounts of dummy data to speed up development.
-+ php artisan make:seeder PhotosTableSeeder
-+ php artisan make:seeder OwnersTableSeeder
-+ php artisan make:factory OwnerFactory
-+ php artisan make:factory PhotoFactory
-
-### Testing Records with Tinker
-
-+ Photo::all()
-+ Owner::all()
-+ Photo::first()
-+ Owner::first()
-+ Photo::count()
-+ Owner::count()
-+ Photo::first()->owner  ====> ```Checking entity relationship``` **OK**
-+ Owner::first()->photos
-
-### Controllers and Resource Controllers
-
-+ php artisan make:controller NamedControlller
-+ php artisan make:controller PhotoController -r --api
-+ php artisan make:controller OwnerController -r --api
 
 ## Resources
 
