@@ -426,19 +426,6 @@ class PhotoController extends Controller
 
 ```
 
-## Links
-
-### Calling Factories in Laravel 8
-
-https://stackoverflow.com/questions/63816395/laravel-call-to-undefined-function-database-seeders-factory - Stack Overflow - Call to undefined function - seeders in Laravel 8
-
-
-### index method display all records
-public function index() {
-    return response(Author::all(), 200);
-}
-
-
 ### Discrepancy - Update() method in Photo and Owner Controllers
 
 ```php
@@ -476,3 +463,24 @@ public function update(Request $request, Photo $photo)
     }
 
 ```
+
+## Links
+
+### Calling Factories in Laravel 8
+
+https://stackoverflow.com/questions/63816395/laravel-call-to-undefined-function-database-seeders-factory - Stack Overflow - Call to undefined function - seeders in Laravel 8
+
+
+### index method display all records
+
+```php
+
+<?php
+    public function index() {
+        return response(Author::all(), 200);
+    }
+
+?>
+
+```
+
