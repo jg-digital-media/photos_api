@@ -19,5 +19,7 @@ use Illuminate\Support\Facades\Route;
 });
  */
 
- Route::get( 'owners', 'OwnerController@index' );
- Route::get( 'photos', 'PhotoController@index' );
+Route::get( 'owners', 'OwnerController@index' );
+Route::get( 'owners/{owner}', 'OwnerController@show' );
+
+Route::get( 'photos', 'PhotoController@index' );

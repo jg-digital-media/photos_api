@@ -44,10 +44,9 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Owner $owner)
-    {
-        return response($owner, 200);
-    }
+    public function show(Owner $owner) {
+        return response( new OwnerResource($owner), 200);
+     }
 
     /**
      * Update the specified resource in storage.
