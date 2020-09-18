@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Http\Resources\OwnerResource;
 use Illuminate\Http\Request;
 
 class OwnerController extends Controller
@@ -15,7 +16,7 @@ class OwnerController extends Controller
     public function index()
     {
         //list all records
-        return response(Owner::all(), 200);
+        return response( OwnerResource::collection( Owner::all(), 200) );
         
     }
 
