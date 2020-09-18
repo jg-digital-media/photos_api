@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 18/09/202020  13:15 BST
+Photos API in Laravel - **Last Update** - 18/09/202020  14:20 BST
 Laravel Build: v8.3.0
 
 
@@ -11,6 +11,7 @@ Laravel Build: v8.3.0
 + Migrations 
 + Resource Controllers
 + Resources
++ Testing API Endpoints
 + Notes
 + Links
 
@@ -312,6 +313,18 @@ public function store(Request $request)
 
 ```
 
+## Testing API Endpoints
+
++ Testing endpoints project in development 
+
+```rest_test.http
+### All Owners
+
+GET http://localhost:8000/api/owners   
+# successfully retrieves owners list
+``
+
+
 ## Notes
 
 ### Models
@@ -561,9 +574,6 @@ public function update(Request $request, Photo $photo)
 + No Breaking Changes with Resource Files in Laravel 8
 
 + command: php artisan make:resource AuthorResource
-
-```php
-```
 
 + Connect Resources - in index method of Controller file
 

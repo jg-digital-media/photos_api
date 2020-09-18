@@ -1,0 +1,5 @@
+
+### All Owners
+
+GET http://localhost:8000/api/owners   
+# successfully retrieves owners list
