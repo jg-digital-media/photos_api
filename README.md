@@ -17,6 +17,7 @@ Laravel Build: v8.3.0
 + Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working in Tinker REPL that verifies the test records are there.
 + Have created the API Resource Controllers for Owner and Photos.
 + Currently going through the CRUD methods in the Resource Controllers - Why are we not using a return statement for the PhotosController store() method??
++ Fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers
 
 ## Migrations
 
@@ -66,7 +67,7 @@ class PhotoController extends Controller
 
 ```
 
-### Validate new data in store() method. v1
+### Validate new data in store() method of OwnerController. v1
 
 ```php
 
@@ -90,7 +91,7 @@ class PhotoController extends Controller
     return response(Owner::create($data, 201)) //201 created
 ```
 
-### Validate new data in store() method. v2
+### Validate new data in store() method of OwnerController. v2
 
 ```php
 
@@ -106,7 +107,7 @@ class PhotoController extends Controller
 
 ```
 
-### Validate new data in store() method. v3
+### Validate new data in store() method of PhotoController. v3
 
 ```php
    public function store(Request $request)
@@ -204,6 +205,7 @@ public function update(Request $request, Photo $photo)
 + php artisan migrate
 + php artisan migrate:fresh
 + pho artisan db:seed
++ php artisan route:list
 
 ### Create Models
 + php artisan make:model Model -m - create model with migration
@@ -234,6 +236,12 @@ public function update(Request $request, Photo $photo)
 + php artisan make:controller PhotoController -r --api
 + php artisan make:controller OwnerController -r --api
 
+## Resources
+
++ Resources help control which specific pieces of data will be displayed in the API. Some database columns should be hidden.
+
+```php
+```
 
 ## Notes
 
@@ -428,6 +436,8 @@ class PhotoController extends Controller
 
 ### Discrepancy - Update() method in Photo and Owner Controllers
 
++ Not sure why in one function we're using the update() method by itself and returning it in the response and then in the other method only returning the response.  
+
 ```php
  public function update(Request $request, Owner $owner)
     {
@@ -438,8 +448,10 @@ class PhotoController extends Controller
             'year' => 'required'
         ]);
 
+        //use this line to capture the existing data record
         $owner->update($data);
 
+        //return the response
         return response($owner->update($data), 200);
 
 
@@ -464,6 +476,17 @@ public function update(Request $request, Photo $photo)
 
 ```
 
+### Route
+
++ php artisan route:list
+
+```php
+
+ Route::get( 'owners', 'OwnerController@index' );
+ Route::get( 'photos', 'PhotoController@index' );
+
+```
+
 ## Links
 
 ### Calling Factories in Laravel 8
@@ -484,3 +507,82 @@ https://stackoverflow.com/questions/63816395/laravel-call-to-undefined-function-
 
 ```
 
+### Routes
+
+
++ Defining Routes to controllers has changed in Laravel 8.
+
++ Per this link
+
+https://laracasts.com/discuss/channels/laravel/target-class-carriercontroller-does-not-exist
+
++ Make the following changes to your RouteServiceProvider.php file in your Laravel 8 Project.
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
+
+class RouteServiceProvider extends ServiceProvider
+{
+    /**
+     * The path to the "home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const HOME = '/home';
+
+    /**
+     * If specified, this namespace is automatically applied to your controller routes.
+     *
+     * In addition, it is set as the URL generator's root namespace.
+     *
+     * @var string
+     */
+    protected $namespace = 'App\Http\Controllers';  //change namespace to point to Controller class
+
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->configureRateLimiting();
+
+        $this->routes(function () {
+            Route::middleware('web')
+                ->namespace($this->namespace)   //add this line
+                ->group(base_path('routes/web.php'));
+
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)  //add this line
+                ->group(base_path('routes/api.php'));
+        });
+    }
+
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60);
+        });
+    }
+}
+
+```
+
+```
