@@ -17,7 +17,8 @@ Laravel Build: v8.3.0
 + Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working in Tinker REPL that verifies the test records are there.
 + Have created the API Resource Controllers for Owner and Photos.
 + Currently going through the CRUD methods in the Resource Controllers - Why are we not using a return statement for the PhotosController store() method??
-+ Fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers
++ Have successfully fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers
++ Have successfully connected a Controller file to its accompanying Resource file to filter display of records
 
 ## Common Commands
 
@@ -491,6 +492,36 @@ public function update(Request $request, Photo $photo)
 
 ```
 
+### Resources
+
++ No Breaking Changes with Resource Files in Laravel 8
+
++ command: php artisan make:resource AuthorResource
+
+```php
+```
+
++ Connect Resources  - in index method of controller file
+
+```php
+
+<?php 
+
+
+use App\Http\Resources\OwnerResource;
+
+//snip
+
+public function index()
+    {
+        //list all records
+        return response( OwnerResource::collection( Owner::all(), 200) );
+        
+    }
+
+>
+```
+
 ## Links
 
 ### Calling Factories in Laravel 8
@@ -586,7 +617,5 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 }
-
-```
 
 ```
