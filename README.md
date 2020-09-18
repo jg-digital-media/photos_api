@@ -35,8 +35,9 @@ Laravel Build: v8.3.0
 + Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working in Tinker REPL that verifies the test records are there.
 + Have created the API Resource Controllers for Owner and Photos.
 + Currently going through the CRUD methods in the Resource Controllers - Why are we not using a return statement for the PhotosController store() method??
-+ Have successfully fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers
-+ Have successfully connected a Controller file to its accompanying Resource file to filter display of records
++ Have successfully fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers.
++ Have successfully connected a Controller file to its accompanying Resource file to filter display of records.
++ Have successfully created test endpoints which use CRUD operations in Controller files including adding a new Owner record with store().
 
 ## Common Commands
 
@@ -157,6 +158,7 @@ class PhotoController extends Controller
 
 ```php
 
+<?php
     //create a new record
     $data = $request->validate([
         'name' => 'required',
@@ -166,10 +168,32 @@ class PhotoController extends Controller
 
     //shorter syntax
     return response(Owner::create($data, 201)) //201 created
+?>
 
 ```
 
-### Validate new data in store() method of PhotoController. v3
+### Refactored Validate new data in store() method of OwnerController. v3
+
+```php
+<?php
+
+  public function store(Request $request)
+    {
+        //create a new record   
+        $validate = Validator::make($request->toArray(),[
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+        //return response(Owner::create($data, 201)); //201 created
+        return response(new OwnerResource(Owner::create($validate->validate())), 201); //201 created
+    }
+
+?>
+```
+
+### Validate new data in store() method of PhotoController. v1
 
 ```php
    public function store(Request $request)
@@ -186,7 +210,7 @@ class PhotoController extends Controller
     }
 ```
 
-### Display a specific record with show()
+### Display a specific record with show() method of OwnerController v1
 
 ```php
    public function show(Owner $owner)
@@ -195,7 +219,7 @@ class PhotoController extends Controller
     }
 ```
 
-### Update a specific record with update()
+### Update a specific record with update() method of OwnerController v1
 
 ```php
 public function update(Request $request, Owner $owner)
@@ -215,6 +239,8 @@ public function update(Request $request, Owner $owner)
     }
 ```
 
+### Update a specific record with update() method of PhotoController v1
+
 ```php
 <?php 
 public function update(Request $request, Photo $photo)
@@ -232,7 +258,7 @@ public function update(Request $request, Photo $photo)
     }
 ```
 
-### Delete a specific record with destroy() method  v1
+### Delete a specific record with destroy() method of OwnerController v1
 
 ```php
    public function destroy(Owner $owner)
@@ -243,7 +269,7 @@ public function update(Request $request, Photo $photo)
     }
 ```
 
-### Delete a specific record with destroy() method  v2
+### Delete a specific record with destroy() method of OwnerController v2
 
 ```php
    public function destroy(Owner $owner)
@@ -693,3 +719,7 @@ class RouteServiceProvider extends ServiceProvider
 }
 
 ```
+
+### Validator Class Support Facade
+
++ import with ```use Illuminate\Support\Facades\Validator;```

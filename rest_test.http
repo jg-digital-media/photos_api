@@ -8,6 +8,17 @@ GET http://localhost:8000/api/owners
 GET http://localhost:8000/api/owners/1/
 # successfully retrieves single owner
 
+### Test POST Request for new Owner
+
+POST http://localhost:8000/api/owners/
+Content-Type: application/json
+
+{
+  "name": "Jonathan Grieve",
+  "copyright": "JGDM Photography",
+  "year": "2020"
+}
+
 
 ####### Photo Endpoints
 

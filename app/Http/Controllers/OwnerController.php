@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use App\Http\Resources\OwnerResource;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class OwnerController extends Controller
@@ -29,15 +30,14 @@ class OwnerController extends Controller
     public function store(Request $request)
     {
         //create a new record   
-        $data = $request->validate([
+        $validate = Validator::make($request->toArray(),[
             'name' => 'required',
             'copyright' => 'required',
             'year' => 'required'
         ]);
 
         //return response(Owner::create($data, 201)); //201 created
-        return response( new OwnerResource( Owner::create($data)), 201); //201 created
-
+        return response(new OwnerResource(Owner::create($validate->validate())), 201); //201 created
     }
 
     /**
