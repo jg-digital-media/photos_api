@@ -8,15 +8,15 @@ Laravel Build: v8.3.0
 
 ## **Progress**: 
 
-+ Have Set up successful database migrations.
++ Have set up successful database migrations.
 + Created Models for Photos and Owners.
 + Have defined database relationships using Eloquent Syntax.
 + Have created database seeder files based on the Models.
 + Have created factory files with Artisan. They've changed in Laravel 8. How to use Faker library?
 + Have successfully seeded the Models with test data.
-+ Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working un /tinker that verifies the test records are there.
-+ Created the API Resource Controllers for Owner and Photos.
-+ Currently going through the CRUD methods in the resource controllers - why are we not using a return statement for the PhotosController store() method.
++ Some doubt about whether Eloquent Relationships have been successfully been set up but basic commands working in Tinker REPL that verifies the test records are there.
++ Have created the API Resource Controllers for Owner and Photos.
++ Currently going through the CRUD methods in the Resource Controllers - Why are we not using a return statement for the PhotosController store() method??
 
 ## Migrations
 
@@ -152,7 +152,7 @@ public function update(Request $request, Owner $owner)
     }
 ```
 
-```
+```php
 <?php 
 public function update(Request $request, Photo $photo)
     {
