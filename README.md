@@ -2,9 +2,23 @@
 Photos API in Laravel - **Last Update** - 17/09/202020  13:15 BST
 Laravel Build: v8.3.0
 
+
+## Contents
+
++ Description
++ Progress
++ Common Commands
++ Migrations 
++ Resource Controllers
++ Resources
++ Notes
++ Links
+
+
 ## Description 
 
 **The Goal:** Creating a Photos REST API with Laravel, in which photos can be created, updated, deleted, listed and displayed in the browser.  Initially with JSON.
+
 
 ## **Progress**: 
 
