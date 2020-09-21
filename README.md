@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 18/09/202020  14:20 BST
+Photos API in Laravel - **Last Update** - 21/09/202020  13:54 BST
 Laravel Build: v8.3.0
 
 
@@ -39,6 +39,8 @@ Laravel Build: v8.3.0
 + Have successfully connected a Controller file to its accompanying Resource file to filter display of records.
 + Have successfully created test endpoints which use CRUD operations in Controller files including adding a new Owner record with store().
 + Successfully created update() method endpoints and updated a specific record with new data. But it returned 500, not 201.
++ Unable to delete owner record. Returns **500 Internal Server Error**.
+
 
 ## Common Commands
 
@@ -103,6 +105,26 @@ Schema::create('authors', function(Blueprint $table) {
 
 
 ```
+
+## Routes
+
+```php
+
+use Illuminate\Support\Facades\Route;
+
+/* <snip> */
+
+Route::get( 'owners', 'OwnerController@index' );
+Route::get( 'owners/{owner}', 'OwnerController@show' );
+Route::put( 'owners/{owner}', 'OwnerController@update' );
+Route::patch( 'owners/{owner}', 'OwnerController@update' );
+Route::post( 'owners', 'OwnerController@store' );
+Route::delete( 'owners/{owner}', 'OwnerController@destroy' );
+
+Route::get( 'photos', 'PhotoController@index' );
+
+```
+
 
 ## Resource Controllers
 
@@ -240,6 +262,31 @@ public function update(Request $request, Owner $owner)
     }
 ```
 
+### Update a specific record with update() method of OwnerController v2
+
+```php
+public function update(Request $request, Owner $owner)
+    {
+        //update a specific record
+        $validate = Validator::make($request->toArray(),[
+            'name' => 'required',
+            'copyright' => 'required',
+            'year' => 'required'
+        ]);
+
+
+        //use this line to capture the existing data record
+        $owner->update( $validate->validate() );
+
+        //return the response
+        return response( new AuthorResource($owner), 201);
+
+
+    }
+
+```
+
+
 ### Update a specific record with update() method of PhotoController v1
 
 ```php
@@ -285,6 +332,10 @@ public function update(Request $request, Photo $photo)
         return response(null, 204);
     }
 ```
+
+### The Destroy method - No Validation class.
+
+Remains the same. Should return Status code 204.
 
 ## Resources
 
@@ -349,7 +400,44 @@ public function store(Request $request)
 
 GET http://localhost:8000/api/owners   
 # successfully retrieves owners list
-``
+
+```
+
+### Test POST Request for new Owner
+
+```
+POST http://localhost:8000/api/owners/
+Content-Type: application/json
+
+{
+  "name": "Jonathan Grieve",
+  "copyright": "JGDM Photography",
+  "year": "2020"
+}
+
+```
+### Test POST Request for editing an Owner
+
+
+```
+POST http://localhost:8000/api/owners/11?_method=PUT
+Content-Type: application/json
+
+{
+  "name": "Jonnie Grieve",
+  "copyright": "JG Photography",
+  "year": "2020"
+}
+
+```
+
+### DELETE
+
+```
+### DELETE a specific record 
+DELETE http://127.0.0.1:8000/api/owners/11
+
+```
 
 
 ## Notes
