@@ -71,7 +71,7 @@ class OwnerController extends Controller
         $owner->update( $validate->validate() );
 
         //return the response
-        return response( new AuthorResource($owner), 201);
+        return response( new OwnerResource($owner), 201);
 
 
     }
