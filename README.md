@@ -38,6 +38,7 @@ Laravel Build: v8.3.0
 + Have successfully fixed a breaking change with defining routes so data is retrieved from both index() methods of their Controllers.
 + Have successfully connected a Controller file to its accompanying Resource file to filter display of records.
 + Have successfully created test endpoints which use CRUD operations in Controller files including adding a new Owner record with store().
++ Successfully created update() method endpoints and updated a specific record with new data. But it returned 500, not 201.
 
 ## Common Commands
 

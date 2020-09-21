@@ -60,17 +60,18 @@ class OwnerController extends Controller
     public function update(Request $request, Owner $owner)
     {
         //update a specific record
-        $data = $request->validate([
+        $validate = Validator::make($request->toArray(),[
             'name' => 'required',
             'copyright' => 'required',
             'year' => 'required'
         ]);
 
+
         //use this line to capture the existing data record
-        $owner->update($data);
+        $owner->update( $validate->validate() );
 
         //return the response
-        return response($owner->update($data), 200);
+        return response( new AuthorResource($owner), 201);
 
 
     }
