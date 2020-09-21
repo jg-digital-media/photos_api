@@ -20,6 +20,24 @@ Content-Type: application/json
 }
 
 
+### Test POST Request for editing a record
+
+POST http://localhost:8000/api/owners/11?_method=PUT
+Content-Type: application/json
+
+{
+  "name": "Jonnie Grieve",
+  "copyright": "JG Photography - Error 500",
+  "year": "2020"
+}
+
+
+### DELETE a specific record 
+
+DELETE http://localhost:8000/api/owners/11
+
+
+
 ####### Photo Endpoints
 
 ### All Photos
