@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Photo;
+use App\Http\Resources\PhotoResource;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
