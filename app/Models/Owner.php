@@ -17,7 +17,7 @@ class Owner extends Model
         "year"
     ];
 
-    public function books() {
+    public function photos() {
         return $this->hasMany(Photo::class);
     }
     
