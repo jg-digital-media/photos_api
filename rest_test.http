@@ -1,15 +1,14 @@
-####### Owner Endpoints
+####### OWNER ENDPOINTS
 
 ### All Owners
 GET http://localhost:8000/api/owners   
 # successfully retrieves owners list
 
 ### Test Single Authors
-GET http://localhost:8000/api/owners/11
+GET http://localhost:8000/api/owners/12
 # successfully retrieves single owner
 
 ### Test POST Request for new Owner
-
 POST http://localhost:8000/api/owners/
 Content-Type: application/json
 
@@ -21,7 +20,6 @@ Content-Type: application/json
 
 
 ### Test POST Request for editing a record
-
 POST http://localhost:8000/api/owners/11?_method=PUT
 Content-Type: application/json
 
@@ -38,7 +36,7 @@ DELETE http://localhost:8000/api/owners/11
 
 
 
-####### Photo Endpoints
+####### PHOTO ENDPOINTS
 
 ### All Photos
 GET http://localhost:8000/api/photos   
@@ -47,4 +45,28 @@ GET http://localhost:8000/api/photos
 ### Test Photos Authors
 GET http://localhost:8000/api/photos/1/
 # successfully retrieves single photo
+
+### Test POST Request for adding new Photo Record
+POST http://localhost:8000/api/photos/
+Content-Type: application/json
+
+{
+  "url": "img/photo.png",
+  "caption": "photo of a cat",
+  "owner": "3"
+}
+
+
+### Test POST Request for editing a record
+POST http://localhost:8000/api/photos/9?_method=PUT
+Content-Type: application/json
+
+{
+  "url": "Jonnie Grieve",
+  "captions": "JG Photography",
+  "owner": "3"
+}
+
+### Delete Photo Resoudce
+DELETE http://localhost:8000/api/photos/10
 
