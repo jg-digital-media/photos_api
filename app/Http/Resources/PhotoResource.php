@@ -19,6 +19,7 @@ class PhotoResource extends JsonResource
             "caption" => $this->caption,
             //"owner_id" => $this->owner_id, 
             "owner" => new OwnerResource($this->owner),
+            "alt" => "Photo: from the photo resource"
         ];
         //return parent::toArray($request);
     }
