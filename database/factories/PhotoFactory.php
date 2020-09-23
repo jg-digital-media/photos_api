@@ -25,7 +25,7 @@ class PhotoFactory extends Factory
     {
         return [
             //
-            "url" => $this->faker->name,
+            "url" => $this->faker->url,
             "caption" => $this->faker->text,
             "owner_id" => rand(1, \App\Models\Owner::count())
         ];
