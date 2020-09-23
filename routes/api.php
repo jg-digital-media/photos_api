@@ -27,6 +27,7 @@ Route::post( 'owners', 'OwnerController@store' );
 Route::delete( 'owners/{owner}', 'OwnerController@destroy' );
 
 Route::get( 'photos', 'PhotoController@index' );
+Route::get( 'photos/{photo}', 'PhotoController@show' );
 Route::put( 'photos/{photo}', 'PhotoController@update' );
 Route::patch( 'photos/{photo}', 'PhotoController@update' );
 Route::post( 'photos', 'PhotoController@store' );
