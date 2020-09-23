@@ -62,13 +62,15 @@ class PhotoController extends Controller
     public function update(Request $request, Photo $photo)
     {
         //
-        $data = $request->validate([
+        $validate = Validator::make($request->toArray(), [
             "url" => "required",
             "caption" => "required",
             "owner_id" => "required"
         ]);
 
-        return response( $photo->update($data), 200 );
+        $photo->update( $validate->validate() );
+
+        return response( new PhotoResource( $photo ), 200);
     
     }
 
