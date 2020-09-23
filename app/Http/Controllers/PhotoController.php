@@ -31,13 +31,13 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->validate([
-        "url" => "required",
-        "caption" => "required",
-        "owner_id" => "required"
-        ]);
+        $validate = Validator::make($request->toArray(), [
+            "url" => "required",
+            "caption" => "required",
+            "owner_id" => "required"
+            ]);
 
-        $photo = Photo::create($data);
+        return response( new PhotoResource(Photo::create($validate->validate())), 201);
         //why no return keyword?
     }
 
