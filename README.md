@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 23/09/202020  13:00 BST
+Photos API in Laravel - **Last Update** - 23/09/202020  14:00 BST
 Laravel Build: v8.3.0
 
 
@@ -43,7 +43,7 @@ Laravel Build: v8.3.0
   + Now completed per this Stack overflow thread. https://stackoverflow.com/questions/64012115/im-returning-a-500-internal-server-when-trying-to-delete-a-record-in-laravel-8 
 
 
-+ Testing store() method of PHOTO - returns **302 FOUND**.
++ Testing store() method of PhotoController and OwnerController - **Successfully returns: 201 Created**.
 + Testing destroy() method of PHOTO - returns **204**.
 + Testing update() method of PHOTO - returns **302 FOUND**.
 + Have Successfully cloned and tested the same CRUD operations from another location. ```composer update``` plus saved database credentials.
