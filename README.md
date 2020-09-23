@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 22/09/202020  16:00 BST
+Photos API in Laravel - **Last Update** - 23/09/202020  13:00 BST
 Laravel Build: v8.3.0
 
 
@@ -41,7 +41,14 @@ Laravel Build: v8.3.0
 + Have Successfully created update() method endpoints and updated a specific record with new data. It correctly returns **201 Created**.
 + Unable to delete owner record. Returns **500 Internal Server Error**.
   + Now completed per this Stack overflow thread. https://stackoverflow.com/questions/64012115/im-returning-a-500-internal-server-when-trying-to-delete-a-record-in-laravel-8 
-+ Have Successfully cloned and tested the same CRUD opperations from another location.  ```composer update``` plus saved database credentials
+
+
++ Testing store() method of PHOTO - returns **302 FOUND**.
++ Testing destroy() method of PHOTO - returns **204**.
++ Testing update() method of PHOTO - returns **302 FOUND**.
++ Have Successfully cloned and tested the same CRUD operations from another location. ```composer update``` plus saved database credentials.
+
+
 
 
 ## Common Commands
@@ -54,16 +61,19 @@ Laravel Build: v8.3.0
 + php artisan route:list
 
 ### Create Models
-+ **```php artisan make:model Model-m```** - create model with migration
-+ **php artisan make:model Model** - create model 
+
++ Models define table data and define the columns that will be changeable in the app.
+
+  + **```php artisan make:model Model-m```** - create model with migration
+  + **```php artisan make:model Model```** - create model 
 
 ### Factories and Seeders
 
 + Model factories are used to generate large amounts of dummy data to speed up development.
-+ php artisan make:seeder PhotosTableSeeder
-+ php artisan make:seeder OwnersTableSeeder
-+ php artisan make:factory OwnerFactory
-+ php artisan make:factory PhotoFactory
+  + php artisan make:seeder PhotosTableSeeder
+  + php artisan make:seeder OwnersTableSeeder
+  + php artisan make:factory OwnerFactory
+  + php artisan make:factory PhotoFactory
 
 ### Testing Records with Tinker
 
@@ -78,14 +88,17 @@ Laravel Build: v8.3.0
 
 ### Controllers and Resource Controllers
 
-+ php artisan make:controller NamedControlller
-+ php artisan make:controller PhotoController -r --api
-+ php artisan make:controller OwnerController -r --api
++ Defines and runs CRUD Operation methods based on the Model.
+  + php artisan make:controller NamedControlller
+  + php artisan make:controller PhotoController -r --api
+  + php artisan make:controller OwnerController -r --api
 
 ### Resources
 
-+ php artisan make:resource PhotoResource
-+ php artisan make:resource OwnerResource
++ Filter display of database specific ecords
+
+  + php artisan make:resource PhotoResource
+  + php artisan make:resource OwnerResource
 
 ## Migrations
 
@@ -155,6 +168,27 @@ class PhotoController extends Controller
 
 ```
 
+### index() method of a Resource Controller File. v1 
+
+```php
+    public function index() {
+        //list all records
+        return response(Photo::all(), 200);
+        
+    }
+```
+
+### index() method of a Resource Controller File. v2
+
+```php
+
+    public function index() {
+            //list all records
+            return response( OwnerResource::collection( Owner::all(), 200) );
+            
+    }
+```
+
 ### Validate new data in store() method of OwnerController. v1
 
 ```php
@@ -202,8 +236,7 @@ class PhotoController extends Controller
 ```php
 <?php
 
-  public function store(Request $request)
-    {
+    public function store(Request $request) {
         //create a new record   
         $validate = Validator::make($request->toArray(),[
             'name' => 'required',
@@ -221,8 +254,8 @@ class PhotoController extends Controller
 ### Validate new data in store() method of PhotoController. v1
 
 ```php
-   public function store(Request $request)
-    {
+<?php
+    public function store(Request $request) {
         //
         $data = $request->validate([
         "url" => "required",
@@ -235,20 +268,71 @@ class PhotoController extends Controller
     }
 ```
 
-### Display a specific record with show() method of OwnerController v1
+### Validate new data in store() method of Photo Controller. v2
 
 ```php
-   public function show(Owner $owner)
-    {
-        return response($owner, 200);
+<?php
+
+    public function store(Request $request) {
+        //
+        $validate = Validator::make($request->toArray(), [
+            "url" => "required",
+            "caption" => "required",
+            "owner_id" => "required"
+            ]);
+
+        return response( new PhotoResource(Photo::create($validate->validate() ) ), 201);
+        //why no return keyword?
     }
+
+
 ```
 
-### Update a specific record with update() method of OwnerController v1
+
+### Display a specific record with show() method of OwnerController. v1
 
 ```php
-public function update(Request $request, Owner $owner)
-    {
+<?php
+    public function show(Owner $owner) {
+        return response($owner, 200);
+    }
+
+```
+
+### Display a specific record with show() method of OwnerController. v2
+
+```php
+    public function show(Owner $owner) {
+        return response( new OwnerResource($owner), 200);
+     }
+
+```
+
+### Display a specific record with show() method of OwnerController. v1
+
+```php
+    public function show(Owner $owner) {
+        return response( new OwnerResource($owner), 200);
+     }
+
+```
+
+### Display a specific record with show() method of PhotoController v1
+
+```php
+<?php
+    public function show(Photo $photo) {
+        return response( new OwnerResource($photo), 200);
+    }
+
+```
+
+
+### Update a specific record with update() method of OwnerController. v1
+
+```php
+<?php
+    public function update(Request $request, Owner $owner) {
         //update a specific record
         $data = $request->validate([
             'name' => 'required',
@@ -267,34 +351,32 @@ public function update(Request $request, Owner $owner)
 ### Update a specific record with update() method of OwnerController v2
 
 ```php
-public function update(Request $request, Owner $owner)
-    {
-        //update a specific record
-        $validate = Validator::make($request->toArray(),[
-            'name' => 'required',
-            'copyright' => 'required',
-            'year' => 'required'
-        ]);
+    public function update(Request $request, Owner $owner) {
+            //update a specific record
+            $validate = Validator::make($request->toArray(),[
+                'name' => 'required',
+                'copyright' => 'required',
+                'year' => 'required'
+            ]);
 
 
-        //use this line to capture the existing data record
-        $owner->update( $validate->validate() );
+            //use this line to capture the existing data record
+            $owner->update( $validate->validate() );
 
-        //return the response
-        return response( new AuthorResource($owner), 201);
+            //return the response
+            return response( new AuthorResource($owner), 201);
 
 
-    }
+        }
 
 ```
 
 
-### Update a specific record with update() method of PhotoController v1
+### Update a specific record with update() method of PhotoController. v1
 
 ```php
 <?php 
-public function update(Request $request, Photo $photo)
-    {
+public function update(Request $request, Photo $photo) {
         //
         $data = $request->validate([
             "url" => "required",
@@ -308,7 +390,27 @@ public function update(Request $request, Photo $photo)
     }
 ```
 
-### Delete a specific record with destroy() method of OwnerController v1
+### Update a specific record with update() method of PhotoController. v2
+
+```php
+
+<?php
+public function update(Request $request, Photo $photo) {
+        //
+        $validate = Validator::make($request->toArray(), [
+            "url" => "required",
+            "caption" => "required",
+            "owner_id" => "required"
+        ]);
+
+        $photo->update( $validate->validate() );
+
+        return response( new PhotoResource( $photo ), 200);
+    
+    }
+```
+
+### Delete a specific record with destroy() method of OwnerController. v1
 
 ```php
    public function destroy(Owner $owner)
@@ -682,6 +784,24 @@ public function update(Request $request, Photo $photo)
 https://stackoverflow.com/questions/64012115/im-returning-a-500-internal-server-when-trying-to-delete-a-record-in-laravel-8
 
 
+### Funny business with foreign keys in Resource files.
+
++ The Photo Resource file contains a reference to the Owner primary key which is called owner_id.  For reasons beyond me it requites another reference called owner for the requests to the PhotoController to work.  Otherwise a 500 Internal Server error is generated.
+
+```php
+<?php
+
+    public function toArray($request){
+        return [ 
+            "url" => $this->url,
+            "caption" => $this->caption,
+            //"owner_id" => $this->owner_id, 
+            "owner" => new OwnerResource($this->owner),
+        ];
+
+    }
+
+```
 
 ### Route
 
