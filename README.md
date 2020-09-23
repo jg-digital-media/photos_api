@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 23/09/202020  14:00 BST
+Photos API in Laravel - **Last Update** - 23/09/202020  14:15 BST
 Laravel Build: v8.3.0
 
 
@@ -40,12 +40,11 @@ Laravel Build: v8.3.0
 + Have successfully created test endpoints which use CRUD operations in Controller files including adding a new Owner record with store().
 + Have Successfully created update() method endpoints and updated a specific record with new data. It correctly returns **201 Created**.
 + Unable to delete owner record. Returns **500 Internal Server Error**.
-  + Now completed per this Stack overflow thread. https://stackoverflow.com/questions/64012115/im-returning-a-500-internal-server-when-trying-to-delete-a-record-in-laravel-8 
-
+  + Now resolved per this Stack overflow thread. https://stackoverflow.com/questions/64012115/im-returning-a-500-internal-server-when-trying-to-delete-a-record-in-laravel-8 
 
 + Testing store() method of PhotoController and OwnerController - **Successfully returns: 201 Created**.
-+ Testing destroy() method of PHOTO - returns **204**.
-+ Testing update() method of PHOTO - returns **302 FOUND**.
++ Testing destroy() method of PhotoController and OwnerController - **Successfully returns: **204 No Content**.
++ Testing update() method of PhotoController and OwnerController - **Successfully returns: 201 Created**.
 + Have Successfully cloned and tested the same CRUD operations from another location. ```composer update``` plus saved database credentials.
 
 
