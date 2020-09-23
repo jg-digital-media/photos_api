@@ -16,8 +16,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //list all records
-        return response(Photo::all(), 200);
+         //list all records
+        return response( OwnerResource::collection( Owner::all(), 200) );
         
     }
 
