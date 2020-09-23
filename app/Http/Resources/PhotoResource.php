@@ -18,9 +18,8 @@ class PhotoResource extends JsonResource
             "url" => $this->url,
             "caption" => $this->caption,
             //"owner_id" => $this->owner_id, 
-            "owner_id" => new OwnerResource($this->owner_id),
+            "owner" => new OwnerResource($this->owner),
         ];
         //return parent::toArray($request);
-        return parent::toArray($request);
     }
 }

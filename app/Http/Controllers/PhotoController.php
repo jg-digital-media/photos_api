@@ -16,8 +16,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-         //list all records
-        return response( OwnerResource::collection( Owner::all(), 200) );
+        //list all records
+        return response( PhotoResource::collection( Photo::all(), 200) );
         
     }
 
@@ -47,10 +47,11 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Photo $photo) 
     {
-        return response($photo, 200);
+        return response( new PhotoResource($photo), 200);
     }
+
 
     /**
      * Update the specified resource in storage.
