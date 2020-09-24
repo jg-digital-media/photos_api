@@ -66,7 +66,7 @@
                     </svg>
                 </div>
 
-                <h2>Contents</h2>
+                <h2>Contents <span id="dev" style="font-style: italic; color: red;">(this app remains <span style="text-decoration: underline">in development</span>)</span></h2>
 
                 
 
