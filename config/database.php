@@ -43,24 +43,17 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'mysql' => [
+        'my' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'db_photoapi'),
-            'username' => env('DB_USERNAME', 'lv_api_admin'),
-            'password' => env('DB_PASSWORD', 'LTYM8dIsj2QcXe0W'),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'host' => $DATABASE_URL["127.0.0.1"],
+            'port' => $DATABASE_URL["3306"],
+            'database' => ltrim($DATABASE_URL["db_photoapi"], "/"),
+            'username' => $DATABASE_URL["lv_api_admin"],
+            'password' => $DATABASE_URL["LTYM8dIsj2QcXe0W"],
+            'charset' => 'utf8',
             'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'schema' => 'public',
+            'sslmode' => 'require',
         ],
 
         'pgsql' => [
