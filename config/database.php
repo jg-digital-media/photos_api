@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Str;
 
+//configure for MySQL
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$host = $url["host"] ?? null;
+$username = $url["lv_api_admin"] ?? null;
+$password = $url["LTYM8dIsj2QcXe0W"] ?? null;
+$database = substr($url["path"], 1);
+
+
 return [
 
     /*
@@ -43,18 +51,20 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'my' => [
+        'mysql' => [
             'driver' => 'mysql',
-            'host' => $DATABASE_URL["127.0.0.1"],
-            'port' => $DATABASE_URL["3306"],
-            'database' => ltrim($DATABASE_URL["db_photoapi"], "/"),
-            'username' => $DATABASE_URL["lv_api_admin"],
-            'password' => $DATABASE_URL["LTYM8dIsj2QcXe0W"],
-            'charset' => 'utf8',
+            'host' => $host,
+            'port' => env('DB_PORT', '3306'),
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'require',
-        ],
+            'strict' => true,
+            'engine' => null,
+        ]
 
         'pgsql' => [
             'driver' => 'pgsql',
