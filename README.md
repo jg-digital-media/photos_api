@@ -1,22 +1,30 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 23/09/202020  14:15 BST
+Photos API in Laravel - **Last Update** - 21/04/2023 -11:28 BST
 Laravel Build: v8.3.0
 
 
-## Contents
+## Sectiona
 
-+ Description
-+ Progress
-+ Common Commands
-+ Migrations 
-+ Resource Controllers
-+ Resources
-+ Testing API Endpoints
-+ Notes
-+ Links
++ [Description](#description)
++ [Progress](#progress)
++ [Common Commands](#common-commands)
++ [Migrations](migrations) 
++ [Resource Controllers](#resource-controllers)
++ [Resources](resources)
++ [Testing API Endpoints](#testing-api-endpoints)
++ [Notes](#bnotes)
++ [Links](#links)
+
+## **Sections**
+
+  + [Setup](#setup)
+  + [PHP Variables](#php-variables)
+  + [Navigation Classes](#navigation-classes)
 
 
-## Description 
+
+## Description
+[Back to Top](#sections)
 
 **The Goal:** 
 
@@ -24,7 +32,8 @@ Laravel Build: v8.3.0
 
 + Would also like to expand this to display in a dynamic HTML format in the future
 
-## **Progress**: 
+## Progress:
+[Back to Top](#sections)
 
 + Have set up successful database migrations.
 + Created Models for Photos and Owners.
@@ -51,6 +60,7 @@ Laravel Build: v8.3.0
 
 
 ## Common Commands
+[Back to Top](#sections)
 
 + php artisan key:generate
 + php artisan serve
@@ -100,6 +110,7 @@ Laravel Build: v8.3.0
   + php artisan make:resource OwnerResource
 
 ## Migrations
+[Back to Top](#sections)
 
 ```php
 
@@ -121,6 +132,7 @@ Schema::create('authors', function(Blueprint $table) {
 ```
 
 ## Routes
+[Back to Top](#sections)
 
 ```php
 
@@ -141,6 +153,7 @@ Route::get( 'photos', 'PhotoController@index' );
 
 
 ## Resource Controllers
+[Back to Top](#sections)
 
 
 ### List records with index method.
@@ -495,6 +508,7 @@ public function store(Request $request)
 ```
 
 ## Testing API Endpoints
+[Back to Top](#sections)
 
 + Testing endpoints project in development 
 
@@ -544,6 +558,7 @@ DELETE http://127.0.0.1:8000/api/owners/11
 
 
 ## Notes
+[Back to Top](#sections)
 
 ### Models
 
@@ -841,6 +856,7 @@ public function index()
 ```
 
 ## Links
+[Back to Top](#sections)
 
 ### Calling Factories in Laravel 8
 
