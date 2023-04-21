@@ -3,7 +3,7 @@ Photos API in Laravel - **Last Update** - 21/04/2023 -11:28 BST
 Laravel Build: v8.3.0
 
 
-## Sectiona
+## Sections
 
 + [Description](#description)
 + [Progress](#progress)
@@ -14,12 +14,6 @@ Laravel Build: v8.3.0
 + [Testing API Endpoints](#testing-api-endpoints)
 + [Notes](#bnotes)
 + [Links](#links)
-
-## **Sections**
-
-  + [Setup](#setup)
-  + [PHP Variables](#php-variables)
-  + [Navigation Classes](#navigation-classes)
 
 
 
