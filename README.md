@@ -1,5 +1,5 @@
 # photos_api
-Photos API in Laravel - **Last Update** - 21/04/2023 -11:28 BST
+Photos API in Laravel - **Last Update** - 21/04/2023 - 11:32 BST
 Laravel Build: v8.3.0
 
 
@@ -8,7 +8,7 @@ Laravel Build: v8.3.0
 + [Description](#description)
 + [Progress](#progress)
 + [Common Commands](#common-commands)
-+ [Migrations](migrations) 
++ [Migrations](#migrations) 
 + [Resource Controllers](#resource-controllers)
 + [Resources](#resources)
 + [Testing API Endpoints](#testing-api-endpoints)
