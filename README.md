@@ -10,9 +10,9 @@ Laravel Build: v8.3.0
 + [Common Commands](#common-commands)
 + [Migrations](migrations) 
 + [Resource Controllers](#resource-controllers)
-+ [Resources](resources)
++ [Resources](#resources)
 + [Testing API Endpoints](#testing-api-endpoints)
-+ [Notes](#bnotes)
++ [Notes](#notes)
 + [Links](#links)
 
 
